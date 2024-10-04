@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORS Test</title>
+    <title>Fetch Data via CORS Proxy</title>
 </head>
 <body>
-    <h1>CORS Exploit Test</h1>
-    <button onclick="testCORS()">Test CORS</button>
-    <div id="output"></div>
 
-    <script>
-        function testCORS() {
-            fetch('https://admin.digtoon.com/index/static/css/chunk-elementUI.627c66f2.css')
-            .then(response => response.text())
+<h1>Fetching CSS from admin.digtoon.com</h1>
+<button id="fetchData">Fetch CSS</button>
+
+<div id="result"></div>
+
+<script>
+    document.getElementById('fetchData').addEventListener('click', function() {
+        fetch('https://cors-anywhere.herokuapp.com/https://admin.digtoon.com/index/static/css/chunk-elementUI.627c66f2.css')
+            .then(response => response.text()) // Since this is CSS, we want the text
             .then(data => {
-                document.getElementById('output').innerHTML = '<pre>' + data + '</pre>';
+                document.getElementById('result').innerHTML = '<style>' + data + '</style>'; // Apply the fetched CSS
             })
-            .catch(error => {
-                document.getElementById('output').innerHTML = 'Error: ' + error;
-            });
-        }
-    </script>
+            .catch(error => console.log('Error:', error));
+    });
+</script>
+
 </body>
 </html>
