@@ -13,7 +13,7 @@
 
     <script>
         function testCORS() {
-            fetch('https://www.digtoon.com/sysmoloneaction/?kline=1&type=3&line=1min&sysmol=btc')
+            fetch('https://admin.digtoon.com/wap/api/syspara!getSyspara.action?code=customer_service_url&token=1f968087160f424c955b653b35fb68aa')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('output').innerHTML = '<pre>' + data + '</pre>';
